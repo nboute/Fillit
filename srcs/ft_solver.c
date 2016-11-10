@@ -6,13 +6,13 @@
 /*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 17:18:17 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/09 23:59:49 by nboute           ###   ########.fr       */
+/*   Updated: 2016/11/10 17:52:57 by nboute           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_read.h"
 
-int		ft_parse_t(t_tetris *tetrimino, char **grid, int y, int x)
+int		ft_parse_t(t_tetris *tetrimino, char **grid, int x, int y)
 {
 	int	i;
 	int	j;
@@ -41,13 +41,13 @@ int		ft_parse_t(t_tetris *tetrimino, char **grid, int y, int x)
 	return (1);
 }
 
-int		ft_tryparse_t(t_tetris *tetrimino, char **grid, int y, int x)
+int		ft_tryparse_t(t_tetris *tetrimino, char **grid, int x, int y)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	if (ft_parse_t(tetrimino, grid, y, x))
+	if (ft_parse_t(tetrimino, grid, x, y))
 	{
 		while (i < 4)
 		{
@@ -67,24 +67,25 @@ int		ft_tryparse_t(t_tetris *tetrimino, char **grid, int y, int x)
 
 //	Fonction qui effectue le backtracking
 
-char	**ft_solve(char **grid, t_tetris *l, t_tetris *elem)
+char	**ft_solve(char **grid, t_tetris *l, t_tetris *elem, int size)
 {
+	int			pos;
 	int			x;
-	int			y;
 	char		**tmp;
 
-	y = 0;
+	pos = 0;
 	if (!l)
 		return (grid);
-	while(*grid[y])
+	while(*grid[pos / size])
 	{
-		x = 0;
-		while (grid[y][x])
+		x = pos;
+		while (grid[pos / size][pos % size])
 		{
-			if (grid[y][x])
+			if (grid[pos / size][pos % size])
 			{
-				if (ft_tryparse_t(elem, grid, y, x))
-					if (tmp = ft_solve(grid, l, l))
+				if (ft_tryparse_t(elem, grid, int x, int y))
+					if ((tmp = ft_solve(grid, l, l)) != NULL)
+						return (tmp);
 			}
 			x++;
 		}
