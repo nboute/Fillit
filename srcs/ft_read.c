@@ -6,7 +6,7 @@
 /*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 16:21:09 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/10 14:55:27 by nboute           ###   ########.fr       */
+/*   Updated: 2016/11/14 09:55:44 by nboute           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_info	**ft_add_tetrimino(t_info **blocks, char *content)
 		tmp->next = elem;
 		elem->letter = tmp->letter + 1;
 	}
+	elem->placed = 0;
 	return (blocks);
 }
 
