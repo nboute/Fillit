@@ -12,7 +12,7 @@
 
 #include "../includes/ft_read.h"
 
-int		ft_parse_t(t_tetris *tetrimino, char **grid, int y, int x)
+int	ft_parse_t(t_tetris *tetrimino, char **grid, int y, int x)
 {
 	int	i;
 	int	j;
@@ -40,7 +40,7 @@ int		ft_parse_t(t_tetris *tetrimino, char **grid, int y, int x)
 	return (1);
 }
 
-int		ft_tryparse_t(t_tetris *tetrimino, char **grid, int x, int y)
+int	ft_tryparse_t(t_tetris *tetrimino, char **grid, int y, int x)
 {
 	int	i;
 	int	j;
@@ -48,18 +48,7 @@ int		ft_tryparse_t(t_tetris *tetrimino, char **grid, int x, int y)
 	i = 0;
 	if (ft_parse_t(tetrimino, grid, y, x))
 	{
-		tetrimino->placed = 0;
-		while (i < 4)
-		{
-			j = 0;
-			while (j < 4)
-			{
-				if (grid[y + i][x + j] == tetrimino->letter)
-					grid[y + i][x + j] = '.';
-				j++;
-			}
-			i++;
-		}
+		ft_delete_tetrimino(grid, tetrimino, y, x);
 		return (1);
 	}
 	else
@@ -67,33 +56,69 @@ int		ft_tryparse_t(t_tetris *tetrimino, char **grid, int x, int y)
 	return (0);
 }
 
-//	Fonction qui effectue le backtracking
+//	supprime le tetrimino indique de la grille
+void	ft_delete_tetrimino(char **grid, t_tetris *tetrimino, int y, int x)
+{
+	int	i;
+	int	j;
 
-char	**ft_solve(char **grid, t_tetris *l, int size)
+	i = 0;
+	tetrimino->placed = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (grid[y + i][x + j] == tetrimino->letter)
+				grid[y + i][x + j] = '.';
+			j++;
+		}
+		i++;
+	}
+}
+
+//	Vérifie si tous les tetriminos sont deja places
+int	ft_allplaced(t_tetris *list)
+{
+	t_tetris	*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		if (!tmp->placed)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+
+//	Fonction qui effectue le backtracking
+char	**ft_solve(char **grid, t_tetris *l, t_tetris *elem, int size)
 {
 	int			pos;
 	char		**tmp;
-	t_tetris	*elem;
 
-	if (!l)
+	if (ft_allplaced(l))
 		return (grid);
-	elem = l;
 	while (elem)
 	{
 		pos = 0;
-		while (pos / size < size)
+		while (pos / size < size && elem->placed)
 		{
 			if (grid[pos / size][pos % size] && !elem->placed)
 			{
 				if (ft_tryparse_t(elem, grid, pos / size, pos % size))
-					if ((tmp = ft_solve(grid, l, size)) != NULL)
+				{
+					if ((tmp = ft_solve(grid, l, l, size)) != NULL)
 						return (tmp);
+					ft_delete_tetrimino(grid, l, pos / size, pos % size);
+				}
 			}
 			pos++;
 		}
 	elem = elem->next;
 	}
-
 	return (NULL);
 }
 
@@ -119,6 +144,7 @@ char	**ft_tabnew(int y, int x, char c)
 	return (tab);
 }
 
+
 //la variable size correspond a la premiere racine entiere du carre egal ou superieur au nombre de blocs
 
 char	**ft_solver(t_info *blocks, int size)
@@ -126,13 +152,15 @@ char	**ft_solver(t_info *blocks, int size)
 	char	**grid;
 	char 	**tmp;
 
-	grid = NULL;	
+	grid = NULL;
+	tmp = NULL;	
 	while (!grid)
 	{
+//Une des fonctions de ma libft, que je rajouterai. Elle free juste un tableau a double entree.
+		if (tmp)
+			ft_tabdel(tmp);
 		tmp = ft_tabnew(size, size, '.');
 		grid = ft_solve(tmp, blocks->list, size);
-//Une des fonctions de ma libft, que je rajouterai. Elle free juste un tableau a double entree.
-		ft_tabdel(tmp);
 		size++;
 	}
 	ft_affgrid(grid);
