@@ -6,7 +6,7 @@
 /*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 17:18:17 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/28 15:35:25 by nboute           ###   ########.fr       */
+/*   Updated: 2016/11/28 20:28:59 by nboute           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_solver(t_info *blocks)
 	grid = NULL;
 	tmp = NULL;
 	size = blocks->nb_blocks * 4;
-	while ((i = ft_sqrt(size)) <= 1 || size < 16)
+	while ((i = ft_sqrt(size)) <= 1 || size < 9)
 		size++;
 	size = i;
 	while (!grid)

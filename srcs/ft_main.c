@@ -6,7 +6,7 @@
 /*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 20:17:10 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/28 15:35:32 by nboute           ###   ########.fr       */
+/*   Updated: 2016/11/28 20:32:19 by nboute           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*ft_error(int err)
 	if (err == 0)
 		ft_putstr_fd("usage: fillit source_file\n", 2);
 	else if (err == 1)
-		ft_putstr_fd("error\n", 2);
+		ft_putstr_fd("error\n", 1);
 	return (NULL);
 }
 
