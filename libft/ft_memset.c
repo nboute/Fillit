@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_read.h                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 16:22:16 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/10 14:24:24 by nboute           ###   ########.fr       */
+/*   Created: 2016/11/02 22:29:59 by nboute            #+#    #+#             */
+/*   Updated: 2016/11/07 18:56:09 by nboute           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_READ_H
+#include "libft.h"
 
-# define FT_READ_H
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-
-typedef	struct		s_tetris
+void	*ft_memset(void *ptr, int value, size_t num)
 {
-	char			**data;
-	char			letter;
-	int				placed;
-	struct s_tetris	*next;
-}					t_tetris;
+	char		*ptr2;
+	size_t		i;
 
-typedef struct		s_info
-{
-	int				nb_blocks;
-	struct s_tetris	*list;
-}					t_info;
-
-#endif
+	i = 0;
+	ptr2 = (char*)ptr;
+	while (i < num)
+		ptr2[i++] = (unsigned char)value;
+	return (ptr);
+}
