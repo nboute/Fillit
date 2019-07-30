@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 16:53:51 by niboute           #+#    #+#             */
-/*   Updated: 2019/06/17 11:18:23 by niboute          ###   ########.fr       */
+/*   Created: 2019/06/27 14:22:21 by niboute           #+#    #+#             */
+/*   Updated: 2019/06/27 14:25:23 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-void		ft_bzero(void *s, size_t n)
+void		*ft_memdup(void *ptr, size_t size)
 {
-	char	*ptr;
-	long	*lptr;
+	void	*dup;
 
-	lptr = (long*)s;
-	while (n >= sizeof(long))
-	{
-		*(lptr++) = 0;
-		n -= sizeof(long);
-	}
-	ptr = (char*)lptr;
-	while (n)
-	{
-		*(ptr++) = 0;
-		n--;
-	}
+	if (!(dup = malloc(size)))
+		return (NULL);
+	return (ft_memcpy(dup, ptr, size));
 }

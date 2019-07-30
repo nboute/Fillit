@@ -3,25 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/04 18:53:47 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/26 15:16:02 by nboute           ###   ########.fr       */
+/*   Created: 2019/03/13 16:28:19 by niboute           #+#    #+#             */
+/*   Updated: 2019/03/27 17:46:01 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_sqrt(int nb)
+long		ft_sqrt(long x)
 {
-	int div;
+	int	sqrt;
 
-	if (nb <= 0)
-		return (0);
-	if (nb == 1)
-		return (1);
-	div = 2;
-	while (div < nb / div)
-		div++;
-	if (div * div == nb)
-		return (div);
-	return (0);
+	sqrt = 1;
+	while (sqrt < x / sqrt)
+		sqrt++;
+	return (sqrt * sqrt == x ? sqrt : -1);
 }

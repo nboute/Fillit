@@ -3,35 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 13:39:01 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/07 17:52:32 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 16:58:35 by niboute           #+#    #+#             */
+/*   Updated: 2018/12/04 18:59:42 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*start;
-	t_list	*lst_elem;
+	t_list	*new;
+	t_list	*ptr;
 	t_list	*tmp;
 
-	lst_elem = NULL;
-	if (!lst)
-		return (NULL);
-	tmp = f(lst);
-	if (tmp)
-		lst_elem = ft_lstnew(tmp->content, tmp->content_size);
-	start = lst_elem;
-	lst = lst->next;
-	while (lst)
-	{
-		tmp = f(lst);
-		lst_elem->next = ft_lstnew(tmp->content, tmp->content_size);
-		lst_elem = lst_elem->next;
-		lst = lst->next;
-	}
-	return (start);
+	new = NULL;
+	if (f)
+		while (lst)
+		{
+			tmp = f(lst);
+			if (!new && tmp)
+			{
+				new = ft_lstnew(tmp->content, tmp->content_size);
+				ptr = new;
+			}
+			else if (tmp)
+			{
+				ptr->next = ft_lstnew(tmp->content, tmp->content_size);
+				ptr = ptr->next;
+			}
+			lst = lst->next;
+		}
+	return (new);
 }

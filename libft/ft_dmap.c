@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strccpy.c                                       :+:      :+:    :+:   */
+/*   ft_dmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 15:47:30 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/22 15:47:53 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 17:08:35 by niboute           #+#    #+#             */
+/*   Updated: 2018/11/09 17:16:02 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strccpy(char *dest, const char *src, int c)
+double	ft_dmap(double val, double range, double min2, double max2)
 {
-	int	i;
-
-	i = 0;
-	while (src[i] && src[i] != (unsigned char)c)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	if (!range)
+		return (0);
+	return (min2 + ((max2 - min2) * (val / range)));
 }

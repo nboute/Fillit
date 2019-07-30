@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 16:53:51 by niboute           #+#    #+#             */
-/*   Updated: 2019/06/17 11:18:23 by niboute          ###   ########.fr       */
+/*   Created: 2019/02/01 15:05:35 by niboute           #+#    #+#             */
+/*   Updated: 2019/07/30 14:58:55 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#ifndef FILLIT_H
+# define FILLIT_H
 
-void		ft_bzero(void *s, size_t n)
+# include <stdlib.h>
+# include "../libft/libft.h"
+
+typedef struct		s_tetri
 {
-	char	*ptr;
-	long	*lptr;
+	char			**content;
+	char			letter;
+	struct s_tetri	*next;
+}					t_tetri;
 
-	lptr = (long*)s;
-	while (n >= sizeof(long))
-	{
-		*(lptr++) = 0;
-		n -= sizeof(long);
-	}
-	ptr = (char*)lptr;
-	while (n)
-	{
-		*(ptr++) = 0;
-		n--;
-	}
-}
+char				**ft_solve(t_tetri *list, int number);
+char				**ft_create_tab(char size);
+void				indent_list(t_tetri *list);
+int					list_size(t_tetri *list);
+t_tetri				*try_parse(int fd);
+
+#endif

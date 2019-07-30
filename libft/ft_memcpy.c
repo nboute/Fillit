@@ -3,24 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 10:51:18 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/07 18:55:40 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/06 16:56:35 by niboute           #+#    #+#             */
+/*   Updated: 2019/06/17 11:42:45 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void			*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	i;
+	char		*pdst;
+	const char	*psrc;
 
-	i = 0;
-	while (i < n)
+	if (!src && !dst)
+		return (NULL);
+	psrc = (const char*)src;
+	pdst = (char*)dst;
+	if ((psrc > pdst && psrc - psrc < (long)n)
+			|| (pdst > psrc && pdst - psrc < (long)n))
+		ft_memmove(dst, src, n);
+	while (n)
 	{
-		*((char*)dest + i) = *((char*)src + i);
-		i++;
+		*pdst++ = *psrc++;
+		n--;
 	}
-	return (dest);
+	return (dst);
 }

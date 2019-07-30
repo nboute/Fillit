@@ -3,24 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tabdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 20:34:59 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/21 12:02:16 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 17:30:19 by niboute           #+#    #+#             */
+/*   Updated: 2018/12/20 13:56:57 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-void	ft_tabdel(char **tab)
+void		ft_tabdel(void ***tab, size_t size)
 {
-	int	i;
+	size_t	i;
 
+	if (!tab)
+		return ;
+	if (!*tab)
+		return ;
 	i = 0;
-	if (tab)
+	while (i < size)
 	{
-		while (tab[i])
-			free(tab[i++]);
-		free(tab);
+		if ((*tab)[i])
+			free((*tab)[i]);
+		(*tab)[i] = NULL;
+		i++;
 	}
+	free(*tab);
+	*tab = NULL;
 }

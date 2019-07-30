@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 19:16:07 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/22 19:27:56 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 15:42:18 by niboute           #+#    #+#             */
+/*   Updated: 2018/12/20 12:52:30 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-size_t	ft_strclen(const char *str, int c)
+size_t	ft_strclen(const char *str, char c)
 {
-	size_t	n;
+	size_t	i;
 
-	n = 0;
-	while (str[n] && str[n] != (unsigned char)c)
-		n++;
-	return (n);
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
 }

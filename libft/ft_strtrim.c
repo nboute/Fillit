@@ -3,38 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 15:40:33 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/08 20:42:13 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 15:31:46 by niboute           #+#    #+#             */
+/*   Updated: 2018/12/20 13:42:32 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+char		*ft_strtrim(char const *s)
 {
 	size_t	i;
-	size_t	last;
-	char	*str;
+	size_t	start;
+	size_t	end;
+	char	*strnew;
 
 	i = 0;
 	if (!s)
 		return (NULL);
-	while (*s == ' ' || *s == '\t' || *s == '\n')
-		s++;
-	if (*s)
-	{
-		while (s[i + 1])
-			i++;
-	}
-	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n')
+	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
+		i++;
+	start = i;
+	i = ft_strlen(s);
+	i = i ? i - 1 : i;
+	while ((s[i] == ' ' || s[i] == '\t' || s[i] == '\n') && i >= start)
 		i--;
-	last = i + 1;
-	i = 0;
-	if ((str = (char*)malloc(last + 1)) == NULL)
+	end = i + 1;
+	if (!(strnew = (char*)malloc(end - start + 1)))
 		return (NULL);
-	ft_strncpy(str, s, last);
-	str[last] = '\0';
-	return (str);
+	i = start;
+	start = 0;
+	while (i < end)
+		strnew[start++] = s[i++];
+	strnew[start] = '\0';
+	return (strnew);
 }

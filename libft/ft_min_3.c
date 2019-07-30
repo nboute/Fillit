@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_last.c                                      :+:      :+:    :+:   */
+/*   ft_min_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 17:20:09 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/23 16:59:10 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 17:22:55 by niboute           #+#    #+#             */
+/*   Updated: 2018/11/09 17:22:58 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-t_list	*ft_lst_last(t_list *list)
+int	ft_min_3(int a, int b, int c)
 {
-	t_list	*tmp;
-
-	if (!list)
-		return (NULL);
-	tmp = list;
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp);
+	if (a <= b && a <= c)
+		return (a);
+	else if (b <= c)
+		return (b);
+	else
+		return (c);
 }

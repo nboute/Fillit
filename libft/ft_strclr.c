@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 14:42:41 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/07 19:42:33 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 14:51:38 by niboute           #+#    #+#             */
+/*   Updated: 2018/12/04 18:22:43 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strclr(char *s)
+void	ft_strclr(char *str)
 {
-	if (s)
-		while (*s)
-			*s++ = '\0';
+	if (str)
+		ft_bzero(str, ft_strlen(str));
 }

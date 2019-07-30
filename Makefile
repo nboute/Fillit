@@ -3,59 +3,50 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nboute <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: niboute <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/26 20:45:05 by nboute            #+#    #+#              #
-#    Updated: 2016/11/28 14:27:42 by nboute           ###   ########.fr        #
+#    Created: 2018/11/09 18:34:41 by niboute           #+#    #+#              #
+#    Updated: 2019/07/30 15:01:26 by niboute          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: make all clean fclean re
+NAME=fillit
 
-NAME = fillit
+SRC= solve.c \
+	 parse.c \
+	 utils.c \
+	 main.c
 
-LIB = -L libft/ -lft
+SRCDIR= src/
 
-LIBFT = libft/libft.a
+SRCS= $(addprefix $(SRCDIR), $(SRC))
 
-CFLAGS = -c -Wall -Wextra -Werror
+OBJ= $(SRCS:.c=.o)
 
-WFLAGS = -Wall -Wextra -Werror
+LIBFT= libft/libft.a
 
-CC = gcc
+FT= -L ./libft/ -lft
 
-C_DIR = srcs/
+CC= gcc
 
-SRCS = ft_main.c \
-	   ft_read.c \
-	   ft_solver.c \
-	   ft_insert.c \
-	   ft_valid_tetra.c
+CFLAGS= -Wall -Wextra -Werror
 
-SRC = $(addprefix $(C_DIR), $(SRCS))
-
-OBJ = $(SRCS:.c=.o)
-
-INC = -I includes -I libft/
-
-all : $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(WFLAGS) $^ -o $@ $(LIB)
+	$(CC) -o $@ $(OBJ) $(CFLAGS) $(FT)
 
 $(LIBFT):
 	make -C libft/
 
-$(OBJ) : $(SRC)
-	$(CC) $(CFLAGS) $^ $(INC)
-
-clean :
-	make clean -C libft/
+clean:
 	rm -f $(OBJ)
+	make clean -C libft/
 
-fclean : clean
-	rm -f $(LIBFT)
-	rm -f libft.a
+fclean: clean
 	rm -f $(NAME)
+	rm -f $(LIBFT)
 
-re : fclean all
+re: clean fclean all
+
+.PHONY: all clean fclean re

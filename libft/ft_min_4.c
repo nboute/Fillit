@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcn.c                                         :+:      :+:    :+:   */
+/*   ft_min_4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/28 14:02:45 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/28 14:04:35 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 17:22:17 by niboute           #+#    #+#             */
+/*   Updated: 2018/11/09 17:29:09 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strcn(char *str, int c)
+int	ft_min_4(int a, int b, int c, int d)
 {
-	size_t	n;
-	size_t	i;
-
-	n = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == (unsigned char)c)
-			n++;
-		i++;
-	}
-	return (n);
+	if (a <= b && a <= c && a <= d)
+		return (a);
+	else if (b <= c && b <= d)
+		return (b);
+	else if (c <= d)
+		return (c);
+	else
+		return (d);
 }

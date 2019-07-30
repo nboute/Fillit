@@ -3,30 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 10:55:04 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/07 17:53:02 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 17:45:55 by niboute           #+#    #+#             */
+/*   Updated: 2018/12/20 12:49:12 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "string.h"
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+void					*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t			i;
-	unsigned char	*ptrd;
-	unsigned char	*ptrs;
+	const unsigned char	*psrc;
+	unsigned char		*pdst;
+	unsigned char		uc;
 
-	i = 0;
-	ptrd = (unsigned char*)dest;
-	ptrs = (unsigned char*)src;
-	while (i < n)
+	uc = (unsigned char)c;
+	psrc = (const unsigned char*)src;
+	pdst = (unsigned char*)dst;
+	while (n)
 	{
-		ptrd[i] = ptrs[i];
-		if (ptrd[i] == (unsigned char)c)
-			return ((void*)(ptrd + i + 1));
-		i++;
+		*pdst = *psrc;
+		if (*pdst == uc)
+			return (pdst + 1);
+		pdst++;
+		psrc++;
+		n--;
 	}
 	return (NULL);
 }

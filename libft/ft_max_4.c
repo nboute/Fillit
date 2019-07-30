@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_max_4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 16:53:51 by niboute           #+#    #+#             */
-/*   Updated: 2019/06/17 11:18:23 by niboute          ###   ########.fr       */
+/*   Created: 2018/11/09 17:24:04 by niboute           #+#    #+#             */
+/*   Updated: 2018/11/09 17:25:20 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-void		ft_bzero(void *s, size_t n)
+int	ft_max_4(int a, int b, int c, int d)
 {
-	char	*ptr;
-	long	*lptr;
-
-	lptr = (long*)s;
-	while (n >= sizeof(long))
-	{
-		*(lptr++) = 0;
-		n -= sizeof(long);
-	}
-	ptr = (char*)lptr;
-	while (n)
-	{
-		*(ptr++) = 0;
-		n--;
-	}
+	if (a >= b && a >= c && a >= d)
+		return (a);
+	else if (b >= c && b >= d)
+		return (b);
+	else if (c >= d)
+		return (c);
+	else
+		return (d);
 }

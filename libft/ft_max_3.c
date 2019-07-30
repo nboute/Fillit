@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtolower.c                                    :+:      :+:    :+:   */
+/*   ft_max_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 11:55:03 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/07 18:44:12 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 17:24:58 by niboute           #+#    #+#             */
+/*   Updated: 2018/11/09 17:25:12 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char			*ft_strtolower(char *s)
+int	ft_max_3(int a, int b, int c)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		s[i] = ft_tolower(s[i]);
-		i++;
-	}
-	return (s);
+	if (a >= b && a >= c)
+		return (a);
+	else if (b >= c)
+		return (b);
+	else
+		return (c);
 }

@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 16:53:51 by niboute           #+#    #+#             */
-/*   Updated: 2019/06/17 11:18:23 by niboute          ###   ########.fr       */
+/*   Created: 2019/03/22 05:41:21 by niboute           #+#    #+#             */
+/*   Updated: 2019/03/22 05:41:57 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-void		ft_bzero(void *s, size_t n)
+long	ft_abs(long value)
 {
-	char	*ptr;
-	long	*lptr;
-
-	lptr = (long*)s;
-	while (n >= sizeof(long))
-	{
-		*(lptr++) = 0;
-		n -= sizeof(long);
-	}
-	ptr = (char*)lptr;
-	while (n)
-	{
-		*(ptr++) = 0;
-		n--;
-	}
+	return (value < 0 ? -value : value);
 }

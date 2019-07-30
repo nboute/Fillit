@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcdup.c                                       :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nboute <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 19:15:25 by nboute            #+#    #+#             */
-/*   Updated: 2016/11/22 19:29:12 by nboute           ###   ########.fr       */
+/*   Created: 2018/11/09 17:16:14 by niboute           #+#    #+#             */
+/*   Updated: 2019/03/28 15:46:13 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strcdup(const char *str, int c)
+long		ft_power(long nb, int pow)
 {
-	char	*dup;
-
-	dup = (char*)malloc(ft_strclen(str, c) + 1);
-	return (ft_strccpy(dup, str, c));
+	if (pow < 0)
+		return (0);
+	if (!pow)
+		return (1);
+	return (nb * ft_power(nb, pow - 1));
 }

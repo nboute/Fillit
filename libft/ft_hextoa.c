@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_hextoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 18:42:53 by niboute           #+#    #+#             */
-/*   Updated: 2018/12/04 17:24:50 by niboute          ###   ########.fr       */
+/*   Created: 2019/03/27 17:46:15 by niboute           #+#    #+#             */
+/*   Updated: 2019/06/17 12:48:35 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-char		*ft_strrchr(const char *s, int c)
+char	*ft_hextoa(unsigned int hex, int maj)
 {
-	char	t;
+	char	*str;
 	int		i;
 
-	t = (char)c;
-	i = ft_strlen(s);
-	if (!c)
-		return ((char*)(s + i));
-	while (i > 0)
+	if (!(str = (char*)malloc(sizeof(char) * 12)))
+		return (NULL);
+	str[0] = '0';
+	str[1] = !maj ? 'x' : 'X';
+	i = 10;
+	while (i > 1)
 	{
+		if (!maj)
+			str[i] = (hex & 15) >= 10 ?
+				(hex & 15) - 10 + 'a' : (hex & 15) + '0';
+		else
+			str[i] = (hex & 15) >= 10 ?
+				(hex & 15) - 10 + 'A' : (hex & 15) + '0';
 		i--;
-		if (s[i] == t)
-			return ((char*)(s + i));
+		hex >>= 4;
 	}
-	return (NULL);
+	str[11] = '\0';
+	return (str);
 }

@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 16:53:51 by niboute           #+#    #+#             */
-/*   Updated: 2019/06/17 11:18:23 by niboute          ###   ########.fr       */
+/*   Created: 2019/07/30 14:58:59 by niboute           #+#    #+#             */
+/*   Updated: 2019/07/30 15:00:07 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "../inc/fillit.h"
+#include <unistd.h>
+#include <fcntl.h>
 
-void		ft_bzero(void *s, size_t n)
+int			main(int ac, char **av)
 {
-	char	*ptr;
-	long	*lptr;
+	int		fd;
+	t_tetri	*list;
 
-	lptr = (long*)s;
-	while (n >= sizeof(long))
+	if (ac != 2)
 	{
-		*(lptr++) = 0;
-		n -= sizeof(long);
+		ft_putendl_fd("usage: ./fillit [file]", 2);
+		return (0);
 	}
-	ptr = (char*)lptr;
-	while (n)
+	if (!(fd = open(av[1], O_RDONLY)))
 	{
-		*(ptr++) = 0;
-		n--;
+		ft_putendl("error");
+		return (0);
 	}
+	if (!(list = try_parse(fd)))
+	{
+		ft_putendl("error");
+		return (0);
+	}
+	indent_list(list);
+	ft_solve(list, list_size(list));
 }
