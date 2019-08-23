@@ -6,7 +6,7 @@
 #    By: niboute <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 18:34:41 by niboute           #+#    #+#              #
-#    Updated: 2019/07/30 15:01:26 by niboute          ###   ########.fr        #
+#    Updated: 2019/08/01 17:22:40 by niboute          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,7 @@ SRC= solve.c \
 	 utils.c \
 	 main.c
 
-SRCDIR= src/
-
-SRCS= $(addprefix $(SRCDIR), $(SRC))
-
-OBJ= $(SRCS:.c=.o)
+OBJ= $(SRC:.c=.o)
 
 LIBFT= libft/libft.a
 
@@ -29,7 +25,7 @@ FT= -L ./libft/ -lft
 
 CC= gcc
 
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror -g3
 
 all: $(NAME)
 

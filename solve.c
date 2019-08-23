@@ -6,12 +6,11 @@
 /*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:05:08 by niboute           #+#    #+#             */
-/*   Updated: 2019/07/30 14:56:14 by niboute          ###   ########.fr       */
+/*   Updated: 2019/08/01 16:41:04 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fillit.h"
-#include <stdio.h>
+#include "fillit.h"
 
 int			ft_place_piece(int *pxy, t_tetri *piece, char **tab, char size)
 {
@@ -90,7 +89,7 @@ int			ft_fillit_backtrack(t_tetri *piece, char **tab, char size,
 	return (0);
 }
 
-char		**ft_solve(t_tetri *list, int number)
+void		ft_solve(t_tetri *list, int number)
 {
 	int		size;
 	int		solved;
@@ -113,5 +112,6 @@ char		**ft_solve(t_tetri *list, int number)
 	i = 0;
 	while (i < size - 1)
 		ft_putendl(tab[i++]);
-	return (tab);
+	if (tab)
+		ft_tabdel((void***)&tab, size - 1);
 }

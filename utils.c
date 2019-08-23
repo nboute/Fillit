@@ -6,11 +6,11 @@
 /*   By: niboute <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:54:56 by niboute           #+#    #+#             */
-/*   Updated: 2019/07/30 15:05:53 by niboute          ###   ########.fr       */
+/*   Updated: 2019/08/01 17:33:24 by niboute          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fillit.h"
+#include "fillit.h"
 
 char		**ft_create_tab(char size)
 {
@@ -23,7 +23,7 @@ char		**ft_create_tab(char size)
 	i = 0;
 	while (i < size)
 	{
-		if (!(tab[i] = (char*)malloc(sizeof(char) * size)))
+		if (!(tab[i] = (char*)malloc(sizeof(char) * size + 1)))
 			return (0);
 		j = 0;
 		while (j < size)
@@ -47,7 +47,7 @@ int			list_size(t_tetri *list)
 	return (nb);
 }
 
-void		indent_tetri(char **content, int miny, int minx)
+void		indent_tetri(char content[4][4], int miny, int minx)
 {
 	int		x;
 	int		y;
@@ -69,7 +69,7 @@ void		indent_tetri(char **content, int miny, int minx)
 	}
 }
 
-void		get_indent_tetri(char **content)
+void		get_indent_tetri(char content[4][4])
 {
 	int		x;
 	int		y;
